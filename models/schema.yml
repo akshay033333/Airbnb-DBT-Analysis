@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_listing_cleaned
+    description : Primary key for dim listing model
+    columns:
+      - name: listing_id
+        tests:
+        - unique
+        - not_null
+
+
+
+      - name: room_type
+        description : '{{doc("dim_listing_cleansed__minimum_nights")}}'
+        tests:
+        - accepted_values:
+            values: ['Entire home/apt',
+            'Private room',
+            'Shared room',
+            'Hotel room']
+
+      - name: minimum_nights
+        tests:
+          - positive_value
+
+  - name: dim_hosts_cleaned
+    description : Here we clean the host data
+  
